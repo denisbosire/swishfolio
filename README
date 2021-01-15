@@ -1,4 +1,4 @@
-=== Plugin Name ===
+# Plugin Name
 Contributors: Fortisthemes, Afrothemes
 Donate link: https://thepixeltribe.com
 Tags: comments, spam
@@ -10,12 +10,12 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 WordPress portfolio plugins designers & photographers, This plugin adds galleries, portfolio CPT & custom homepage for all our portfolio themes
 
-== Description ==
+# Description
 
 WordPress portfolio plugins designers & photographers, This plugin adds galleries, portfolio CPT & custom homepage for all our portfolio themes
 
 
-== Installation ==
+# == Installation ==
 
 
 
@@ -26,7 +26,7 @@ WordPress portfolio plugins designers & photographers, This plugin adds gallerie
 5. Add portfolio items under the 'Portfolio' > Add new Menu.  Remember to include a featured image and title, the rest is optional.
 
 
-== Frequently Asked Questions ==
+# == Frequently Asked Questions ==
 
 = How do I Set Up The Homepage? =
 
@@ -39,8 +39,7 @@ No, If you want drag and drop blocks, upgrade to swishpro
 == Screenshots ==
 
 
-== Changelog ==
+# == Changelog ==
 
 = 1.0 =
 * intial release
-
