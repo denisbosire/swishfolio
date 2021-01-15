@@ -27,7 +27,7 @@
  * @subpackage Pro_Portfolio/includes
  * @author     Em Kerubo <afrothemes@gmail.com>
  */
-class Swish_Folio_Portfolio {
+class Swish_Folio {
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -131,7 +131,7 @@ class Swish_Folio_Portfolio {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/libraries/TGM/class-tgm-plugin-activation.php';
 
 
-		$this->loader = new Pro_Portfolio_Loader();
+		$this->loader = new Swish_Folio_Loader();
 
 	}
 
@@ -146,7 +146,7 @@ class Swish_Folio_Portfolio {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new Swish_Folio_Portfolio_i18n();
+		$plugin_i18n = new Swish_Folio_i18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 
@@ -155,22 +155,22 @@ class Swish_Folio_Portfolio {
 
 	private function functions() {
 
-		$functions = new Swish_Folio_Portfolio_Functions();
+		$functions = new Swish_Folio_Functions();
 
-		$this->loader->add_action( 'pro-portfolio-intro', $functions, 'intro' );
-		$this->loader->add_action( 'init', $functions, 'portfolio_cpts' );
-		$this->loader->add_action( 'init', $functions, 'portfolio_taxes' );
-		$this->loader->add_action( 'init', $functions , 'portfolio_register_required_plugins');
-		$this->loader->add_action( 'wp_enqueue_scripts', $functions, 'adri_customizer_styles' );
-		$this->loader->add_action( 'customize_register', $functions, 'pro_customize_register' );
-		$this->loader->add_action( 'pro-portfolio-type', $functions, 'pro_type' );
-		$this->loader->add_filter('manage_posts_columns', $functions,'add_img_column');
-		$this->loader->add_filter('manage_posts_custom_column', $functions,'manage_img_column', 10, 2);
-		$this->loader->add_filter( 'pt-ocdi/import_files',$functions, 'portfolio_demo_import' );
-		$this->loader->add_action( 'pt-ocdi/after_import',$functions, 'portfolio_after_import_setup' ); 
-		$this->loader->add_action('wp_ajax_load_more',$functions, 'portfolio_load_more_ajax_handler');
-		$this->loader->add_action('wp_ajax_nopriv_load_more',$functions, 'portfolio_load_more_ajax_handler');
-		$this->loader->add_action('wp_head', $functions, 'myplugin_ajaxurl');
+		$this->loader->add_action( 'pro-portfolio-intro', $functions, 'swishfolio_intro' );
+		$this->loader->add_action( 'init', $functions, 'swishfolio_cpts' );
+		$this->loader->add_action( 'init', $functions, 'swishfolio_taxes' );
+		$this->loader->add_action( 'init', $functions , 'swishfolio_register_required_plugins');
+		$this->loader->add_action( 'wp_enqueue_scripts', $functions, 'swishfolio_customizer_styles' );
+		$this->loader->add_action( 'customize_register', $functions, 'swishfolio_customize_register' );
+		$this->loader->add_action( 'pro-portfolio-type', $functions, 'swishfolio_type' );
+		$this->loader->add_filter('manage_posts_columns', $functions,'swishfolio_add_img_column');
+		$this->loader->add_filter('manage_posts_custom_column', $functions,'swishfolio_manage_img_column', 10, 2);
+		$this->loader->add_filter( 'pt-ocdi/import_files',$functions, 'swishfolio_demo_import' );
+		$this->loader->add_action( 'pt-ocdi/after_import',$functions, 'swishfolio_after_import_setup' ); 
+		$this->loader->add_action('wp_ajax_load_more',$functions, 'swishfolio_load_more_ajax_handler');
+		$this->loader->add_action('wp_ajax_nopriv_load_more',$functions, 'swishfolio_load_more_ajax_handler');
+		$this->loader->add_action('wp_head', $functions, 'swishfolio_ajaxurl');
 		$this->loader->add_action('cmb2_admin_init', $functions, 'swishfolio_cmb' );
 		$this->loader->add_action( 'swish_images', $functions, 'swishfolio_gallery' );
 
@@ -186,7 +186,7 @@ class Swish_Folio_Portfolio {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Swish_Folio_Portfolio_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin = new Swish_Folio_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
@@ -202,7 +202,7 @@ class Swish_Folio_Portfolio {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new Swish_Folio_Portfolio_Public( $this->get_plugin_name(), $this->get_version() );
+		$plugin_public = new Swish_Folio_Public( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );

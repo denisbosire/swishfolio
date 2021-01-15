@@ -5,11 +5,11 @@ jQuery(function($){
 	  $container.imagesLoaded(function(){
 		    $container.masonry({
 		    // options
-		    columnWidth: '.post-item',
-		    itemSelector: '.post-item',
+		    columnWidth: '.grid-item',
+		    itemSelector: '.grid-item',
 		    // option that allows for your website to center in the page
 		    isFitWidth: true,
-		    gutter: 10  
+		    gutter: 0  
 	   });
 	  });
 });

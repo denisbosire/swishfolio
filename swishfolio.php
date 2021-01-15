@@ -43,7 +43,7 @@ define( 'SwishFolio', '1.0.0' );
  */
 function activate_pro_portfolio() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-pro-portfolio-activator.php';
-	Swish_Folio_Portfolio_Activator::activate();
+	Swish_Folio_Activator::activate();
 }
 
 /**
@@ -52,7 +52,7 @@ function activate_pro_portfolio() {
  */
 function deactivate_pro_portfolio() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-pro-portfolio-deactivator.php';
-	Swish_Folio_Portfolio_Deactivator::deactivate();
+	Swish_Folio_Deactivator::deactivate();
 }
 
 register_activation_hook( __FILE__, 'activate_pro_portfolio' );
@@ -86,7 +86,7 @@ require plugin_dir_path( __FILE__ ) . 'templates/page-templates.php';
  */
 function run_pro_portfolio() {
 
-	$plugin = new Pro_Portfolio();
+	$plugin = new Swish_Folio();
 	$plugin->run();
 
 }

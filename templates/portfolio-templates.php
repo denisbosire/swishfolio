@@ -22,7 +22,7 @@
  */
 
 //Portfolio_Template::init();
-class Swish_Portfolio_Templates {
+class Swish_Folio_Templates {
 
 	/**
 	 * The ID of this plugin.
@@ -138,4 +138,4 @@ class Swish_Portfolio_Templates {
 		return $result;
 	}
 }
-add_action( 'template_include', array( 'portfolio_Templates', 'templates') );
+add_action( 'template_include', array( 'Swish_Folio_Templates', 'templates') );

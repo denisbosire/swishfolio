@@ -20,7 +20,7 @@
  * @subpackage Pro_Portfolio/admin
  * @author     Em Kerubo <afrothemes@gmail.com>
  */
-class Pro_Portfolio_Admin {
+class Swish_Folio_Admin {
 
 	/**
 	 * The ID of this plugin.
