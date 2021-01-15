@@ -20,7 +20,7 @@
  * @subpackage Pro_Portfolio/includes
  * @author     Em Kerubo <afrothemes@gmail.com>
  */
-class Pro_Portfolio_Activator {
+class Swish_Folio_Portfolio_Activator {
 
 	/**
 	 * Short Description. (use period)

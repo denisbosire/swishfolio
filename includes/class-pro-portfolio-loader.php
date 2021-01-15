@@ -21,7 +21,7 @@
  * @subpackage Pro_Portfolio/includes
  * @author     Em Kerubo <afrothemes@gmail.com>
  */
-class Pro_Portfolio_Loader {
+class Swish_Folio_Portfolio_Loader {
 
 	/**
 	 * The array of actions registered with WordPress.

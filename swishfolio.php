@@ -35,7 +35,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'PRO_PORTFOLIO', '1.0.0' );
+define( 'SwishFolio', '1.0.0' );
 
 /**
  * The code that runs during plugin activation.
@@ -43,7 +43,7 @@ define( 'PRO_PORTFOLIO', '1.0.0' );
  */
 function activate_pro_portfolio() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-pro-portfolio-activator.php';
-	Pro_Portfolio_Activator::activate();
+	Swish_Folio_Portfolio_Activator::activate();
 }
 
 /**
@@ -52,7 +52,7 @@ function activate_pro_portfolio() {
  */
 function deactivate_pro_portfolio() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-pro-portfolio-deactivator.php';
-	Pro_Portfolio_Deactivator::deactivate();
+	Swish_Folio_Portfolio_Deactivator::deactivate();
 }
 
 register_activation_hook( __FILE__, 'activate_pro_portfolio' );

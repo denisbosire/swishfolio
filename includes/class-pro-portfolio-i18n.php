@@ -24,7 +24,7 @@
  * @subpackage Pro_Portfolio/includes
  * @author     Em Kerubo <afrothemes@gmail.com>
  */
-class Pro_Portfolio_i18n {
+class Swish_Folio_Portfolio_i18n {
 
 
 	/**

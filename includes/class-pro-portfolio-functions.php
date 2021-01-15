@@ -20,7 +20,7 @@
  * @subpackage Pro_Portfolio/includes
  * @author     Em Kerubo <afrothemes@gmail.com>
  */
-class Pro_Portfolio_Functions {
+class Swish_Folio_Portfolio_Functions {
 
 	/**
 	 * Short Description. (use period)
@@ -293,7 +293,7 @@ function portfolio_load_more_ajax_handler(){
 	global $WP_Query;
 	// prepare our arguments for the query, the line below breaks everything, but it's ok.
 	//$args = json_decode( stripslashes( $_POST['query'] ), true );
-	$args['paged'] = $_POST['page'] + 1; // we need next page to be loaded
+	$args['paged'] = $_POST['page'] + 1; 
 	$args['post_status'] = 'publish';
 	$args['post_type'] = 'portfolio';
  

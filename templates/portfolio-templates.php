@@ -22,7 +22,7 @@
  */
 
 //Portfolio_Template::init();
-class Portfolio_Templates {
+class Swish_Portfolio_Templates {
 
 	/**
 	 * The ID of this plugin.
@@ -85,7 +85,7 @@ class Portfolio_Templates {
 	 * @return string
 	 * @throws Exception
 	 */
-	public static function locate( $name, $plugin_dir = PRO_DIR ) {
+	public static function locate( $name, $plugin_dir = SWISH_DIR ) {
 		$template = '';
 
 		// Current theme base dir
@@ -125,7 +125,7 @@ class Portfolio_Templates {
 	 * @return string
 	 * @throws Exception
 	 */
-	public static function load( $name, $args = array(), $plugin_dir = PRO_DIR ) {
+	public static function load( $name, $args = array(), $plugin_dir = SWISH_DIR ) {
 		if ( is_array( $args ) && count( $args ) > 0 ) {
 			extract( $args, EXTR_SKIP );
 		}
