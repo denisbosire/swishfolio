@@ -283,7 +283,8 @@ class Swish_Folio_Functions {
 		global $WP_Query;
 		// prepare our arguments for the query, the line below breaks everything, but it's ok.
 		//$args = json_decode( stripslashes( $_POST['query'] ), true );
-		$args['paged'] = $_POST['page'] + 1; 
+		$pg = $_POST['page'] + 1; 
+		$args['paged'] = filter_var($pg, FILTER_VALIDATE_INT);
 		$args['post_status'] = 'publish';
 		$args['post_type'] = 'portfolio';
 	 
