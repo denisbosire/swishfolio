@@ -1,0 +1,19 @@
+{
+  "name": "swishfolio-lite-cgb-guten-block",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "cgb-scripts start",
+    "build": "cgb-scripts build",
+    "eject": "cgb-scripts eject"
+  },
+  "dependencies": {
+    "@wordpress/block-editor": "^5.2.9",
+    "@wordpress/components": "^12.0.7",
+    "@wordpress/editor": "^9.25.9",
+    "cgb-scripts": "1.23.1",
+    "react-lazyload": "^3.2.0",
+    "react-masonry-component": "^6.2.1",
+    "react-photo-gallery": "^8.0.0"
+  }
+}
