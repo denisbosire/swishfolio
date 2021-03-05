@@ -11,7 +11,7 @@ Currently has two blocks available, more coming soon.
 - Gallery Slider(coming soon)
 - Gallery Stacked(coming soon)
 
-**Other Blocks**
+**Other Blocks** (coming soon)
 - Hero
 - Testimonials
 - Contact 
