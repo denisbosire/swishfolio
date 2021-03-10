@@ -2,8 +2,9 @@ const { __ } = wp.i18n; // Import __() from wp.i18n
 const { Component, Fragment } = wp.element;
 const { withSelect } = wp.data;
 const { decodeEntities } = wp.htmlEntities;
-import { PanelBody, Button, PanelRow, RangeControl, ToggleControl, Disabled, SelectControl } from '@wordpress/components';
+import { PanelBody, PanelRow, RangeControl, ToggleControl, Disabled, SelectControl } from '@wordpress/components';
 import { InspectorControls } from '@wordpress/block-editor';
+import { withState, compose } from '@wordpress/compose';
 
 import Masonry from 'react-masonry-component';
 import Thumbnail from './thumbnail';
@@ -14,14 +15,23 @@ const masonryOptions = {
 	gutter: 0,
 	percentPosition: true,
 };
-class featuredProjects extends Component {
+class masonryPortfolio extends Component {
+	componentDidUpdate( prevProps ) {
+		// Deselect images when deselecting the block.
+		this.props.setAttributes( {
+			gutter: 0,
+			borderRadius: 0,
+		} );
+	}
 	render() {
-		const { posts, className, attributes, setAttributes } = this.props;
+		const { posts, className, attributes, setAttributes, columns, setState } = this.props;
 		const { borderRadius, overlay, gutter, category } = attributes;
 		const imagesLoadedOptions = { background: '.portfolio-item' };
 
 		const onChangeColumn = ( columns ) => {
-			setAttributes( { columns: columns } );
+			setState( { columns } );
+			//setAttributes( { columns: columns } );
+			{console.log( columns )}
 		};
 
 		const onChangeOverlay = ( overlay ) => {
@@ -32,29 +42,36 @@ class featuredProjects extends Component {
 		};
 		const onChangeGutter = ( gutter ) => {
 			setAttributes( { gutter: gutter } );
+			
 		};
 		const onChangeBorderRadius = ( borderRadius ) => {
 			setAttributes( { borderRadius: borderRadius } );
 		};
+
 		const childElements = posts && posts.map( function( post ) {
 			return (
-				<li className="portfolio-item col-3" key={ post.id }>
-					{ ( undefined !== post.featured_media && 0 !== post.featured_media ) && (
-						<Thumbnail
-							id={ post.featured_media }
-							link={ post.link }
-							alt={ post.title.rendered }
-							size={ attributes.imageSize } //set image size, should add this setting on the inspeactorControl
-						/>
-					) }
+				<li className={ 'portfolio-item ' + columns } key={ post.id } >
+					<div className={ 'portfolio-inner' } style={ { margin: gutter + 'px', borderRadius: borderRadius } }>
+						{ ( undefined !== post.featured_media && 0 !== post.featured_media ) && (
+							<Thumbnail
+								id={ post.featured_media }
+								link={ post.link }
+								alt={ post.title.rendered }
+								size={ attributes.imageSize } //set image size, should add this setting on the inspeactorControl
+							/>
+						) }
+						<div className={ 'title ' + overlay }>
+							<h2>
+								<a href={ post.link } >
+									{ decodeEntities( post.title.rendered ) }
 
-					<h2 className="title">
-						<a href={ post.link } >
-							{ decodeEntities( post.title.rendered ) }
-
-						</a>
-					</h2>
-
+								</a>
+							</h2>
+							{ category &&
+								<p>{ __( 'PhotoGraphy', 'swishfolio' ) }</p>
+							}
+						</div>
+					</div>
 				</li>
 			);
 		} );
@@ -62,12 +79,16 @@ class featuredProjects extends Component {
 			<Fragment>
 				<InspectorControls>
 					<PanelBody title="Layout Settings" initialOpen={ true }>
-						<RangeControl
+						<SelectControl
 							label={ __( 'Columns', 'blox-portfolio' ) }
 							value={ columns }
+							options={ [
+								{ label: '1 Column', value: 'col-md-12' },
+								{ label: '2 Column', value: 'col-md-6' },
+								{ label: '3 Column', value: 'col-md-4' },
+								{ label: '4 Column', value: 'col-md-3' },
+							] }
 							onChange={ onChangeColumn }
-							min={ 1 }
-							max={ 5 }
 						/>
 					</PanelBody>
 					<PanelBody title="Design" initialOpen={ true }>
@@ -88,7 +109,7 @@ class featuredProjects extends Component {
 						<PanelRow className="__settings-row">
 							<RangeControl
 								label="Border Radius"
-								value={ this.borderRadius }
+								value={ borderRadius }
 								onChange={ onChangeBorderRadius }
 								min={ 0 }
 								max={ 100 }
@@ -99,7 +120,7 @@ class featuredProjects extends Component {
 								label="Margin"
 								value={ gutter }
 								onChange={ onChangeGutter }
-								min={ 2 }
+								min={ 0 }
 								max={ 30 }
 							/>
 						</PanelRow>
@@ -123,6 +144,7 @@ class featuredProjects extends Component {
 					>
 						{ childElements }
 					</Masonry>
+
 				</Disabled>
 
 			</Fragment >
@@ -130,12 +152,21 @@ class featuredProjects extends Component {
 	}
 }
 {/**
-    use withSelect as a HOC
+    use compose to bundle HOC together
 */}
-export default withSelect(
+const getPosts = withSelect(
 	( select ) => {
 		return {
 			posts: select( 'core' ).getEntityRecords( 'postType', 'portfolio' ),
 		};
 	}
-)( featuredProjects );
+);
+const rangeState = withState(
+	{ columns: 'col-md-3' }
+);
+
+export default compose(
+	getPosts,
+	rangeState
+)( masonryPortfolio );
+

@@ -36,6 +36,7 @@ registerBlockType( 'swishfolio/portfolio-masonry', {
 		},
 		columns: {
 			type: 'string',
+			default: 'col-md-3',
 		},
 		category: {
 			type: 'boolean',
